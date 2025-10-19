@@ -152,25 +152,21 @@ body {
   word-wrap: break-word;
 }
 
-#quizContainer {
-  margin-top: 20px;
-  width: 80%;
+/* Statistik quiz */
+#quizStats {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Langkah perhitungan list styling */
+#stepsList {
+  text-align: left;
+  margin: 0 auto;
   max-width: 500px;
 }
 
-#nextQuizBtn {
-  margin-top: 15px;
-  padding: 10px 25px;
-  background: var(--secondary);
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-#nextQuizBtn:hover {
-  transform: scale(1.1);
+#stepsList li {
+  margin-bottom: 8px;
 }
 
 .mentor-bubble {
