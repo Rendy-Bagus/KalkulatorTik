@@ -6,8 +6,8 @@
   <title>Subnet Universe — TKJ Futuristik</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
   <!-- NAVIGATION -->
   <nav class="navbar">
     <div class="logo">Subnet<span class="accent">Universe</span></div>
@@ -17,45 +17,44 @@
       <a href="#quiz">Quiz</a>
       <a href="#mentor">Mentor</a>
     </div>
-    <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
   </nav>
 
-  <!-- HOME SECTION -->
-<section id="home" class="section hero-section">
-  <div class="hero-overlay">
-    <h1>Belajar <span>Subnetting</span> Jadi Mudah & Seru</h1>
-    <p>Pahami jaringan, hitung subnet & broadcast, lalu kuis interaktif — semuanya dalam satu platform.</p>
-    <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({ behavior:'smooth' })">
-      Mulai Sekarang
-    </button>
-  </div>
-</section>
+  <!-- HOME / HERO SECTION -->
+  <section id="home" class="section hero-section">
+    <div class="hero-overlay">
+      <h1>Kuasai <span>Subnetting</span> & IP Address</h1>
+      <p>Masukkan IP + prefix, lalu hitung network, broadcast & host. Cocok untuk siswa Teknik Komputer & Jaringan (TKJ).</p>
+      <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({ behavior:'smooth' })">
+        Mulai Sekarang
+      </button>
+    </div>
+  </section>
 
-<section class="section features-section">
-  <div class="features-grid">
-    <div class="feature-item">
-      <div class="icon">📊</div>
-      <h3>Hitung Instan</h3>
-      <p>Network & broadcast selesai dalam hitungan detik.</p>
+  <!-- FEATURES SECTION -->
+  <section class="section features-section">
+    <div class="features-grid">
+      <div class="feature-item appear-on-scroll">
+        <div class="icon">📊</div>
+        <h3>Kalkulator Instan</h3>
+        <p>Hitung network & broadcast dalam detik tanpa rumit.</p>
+      </div>
+      <div class="feature-item appear-on-scroll">
+        <div class="icon">🎯</div>
+        <h3>Quiz Berlevel</h3>
+        <p>Pilih level: Easy, Medium atau Hard — tantang dirimu.</p>
+      </div>
+      <div class="feature-item appear-on-scroll">
+        <div class="icon">🤖</div>
+        <h3>Mentor AI</h3>
+        <p>Tanya soal IP, mask atau host — jawaban cepat dan jelas.</p>
+      </div>
+      <div class="feature-item appear-on-scroll">
+        <div class="icon">✨</div>
+        <h3>Tema TKJ Modern</h3>
+        <p>Tampilan futuristik khusus untuk siswa TKJ masa kini.</p>
+      </div>
     </div>
-    <div class="feature-item">
-      <div class="icon">🎯</div>
-      <h3>Quiz Berlevel</h3>
-      <p>Pilih: Easy / Medium / Hard — buktikan skor kamu.</p>
-    </div>
-    <div class="feature-item">
-      <div class="icon">🤖</div>
-      <h3>Mentor AI</h3>
-      <p>Tanya apa saja tentang IP, subnet, dan mask — jawab dengan jelas.</p>
-    </div>
-    <div class="feature-item">
-      <div class="icon">✨</div>
-      <h3>Tema Futuristik</h3>
-      <p>Tampilan modern yang cocok untuk siswa TKJ masa kini.</p>
-    </div>
-  </div>
-</section>
-  
+  </section>
 
   <!-- CALCULATOR SECTION -->
   <section id="calc" class="section">
@@ -67,7 +66,6 @@
       <button id="resetBtn">Reset</button>
     </div>
     <div id="result"></div>
-
     <div id="stepByStepContainer" class="result-box" style="display:none;">
       <h3>Langkah-Langkah Perhitungan</h3>
       <ol id="stepsList"></ol>
@@ -101,7 +99,7 @@
     </div>
   </section>
 
-  <footer>© 2025 Subnet Universe — Dibuat untuk latihan AI & pemrograman dasar.</footer>
+  <footer>© 2025 Subnet Universe — Dibuat untuk latihan TKJ & pemrograman dasar.</footer>
 
   <script src="script.js"></script>
 </body>
