@@ -1,15 +1,23 @@
 document.getElementById('calcBtn').addEventListener('click', () => {
-  const ip = document.getElementById('ipInput').value.trim();
+  const ipInput = document.getElementById('ipInput').value.trim();
+  const prefixInput = document.getElementById('prefixInput').value.trim();
+
+  if (!ipInput || prefixInput === "") {
+    alert("Isi dulu IP dan Prefix-nya!");
+    return;
+  }
+
   try {
-    const result = calculateSubnet(ip);
+    const cidr = ${ipInput}/${prefixInput};
+    const result = calculateSubnet(cidr);
     showResult(result);
-  } catch (err) {
-    alert('Input tidak valid! Contoh: 192.168.1.0/24');
+  } catch (e) {
+    alert("Format salah! Contoh: 192.168.1.0/24");
   }
 });
 
-function calculateSubnet(ip) {
-  const [addr, prefix] = ip.split('/');
+function calculateSubnet(ipCidr) {
+  const [addr, prefix] = ipCidr.split('/');
   const maskBits = parseInt(prefix);
   if (maskBits < 0 || maskBits > 32) throw new Error('Invalid prefix');
 
@@ -26,7 +34,8 @@ function calculateSubnet(ip) {
     broadcast: numToIp(broadcast),
     firstHost: numToIp(firstHost),
     lastHost: numToIp(lastHost),
-    totalHosts
+    totalHosts,
+    netmask: numToIp(mask)
   };
 }
 
@@ -44,6 +53,7 @@ function showResult(r) {
   out.innerHTML = `
     <p><b>Network:</b> ${r.network}</p>
     <p><b>Broadcast:</b> ${r.broadcast}</p>
+    <p><b>Netmask:</b> ${r.netmask}</p>
     <p><b>First Host:</b> ${r.firstHost}</p>
     <p><b>Last Host:</b> ${r.lastHost}</p>
     <p><b>Total Hosts:</b> ${r.totalHosts}</p>
