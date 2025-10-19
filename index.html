@@ -3,36 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SubnetCalc</title>
+  <title>Subnet Universe — TKJ Futuristik</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <!-- tombol mode di pojok kanan atas -->
-  <button class="mode-toggle" id="toggleMode">✪</button>
-
-  <div class="container">
-    <header class="header">
-      <div class="brand">Subnet<span class="accent">Calc</span></div>
-      <div class="subtitle">Kalkulator Subnetting</div>
-    </header>
-
-    <div class="card form-card">
-      <label>Alamat IP</label>
-      <input type="text" id="ip" placeholder="contoh: 192.168.5.10">
-      <label>Subnet Mask (CIDR)</label>
-      <input type="number" id="cidr" min="1" max="30" placeholder="contoh: 24">
-      <div class="row">
-        <button class="btn" id="calc">Hitung</button>
-      </div>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="logo">Subnet<span class="accent">Universe</span></div>
+    <div class="nav-links">
+      <a href="#home">Beranda</a>
+      <a href="#calc">Kalkulator</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#mentor">Mentor</a>
     </div>
+    <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
+  </nav>
 
-    <div class="card result-card" id="result" style="display:none;">
-      <h2>Hasil Perhitungan</h2>
-      <div class="grid" id="grid"></div>
+  <!-- HOME SECTION -->
+  <section id="home" class="section">
+    <h1>Selamat datang di <span>Subnet Universe</span></h1>
+    <p>Platform interaktif untuk anak TKJ belajar jaringan secara visual dan praktis.</p>
+    <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({behavior:'smooth'})">Mulai Hitung</button>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section id="calc" class="section">
+    <h1>Kalkulator <span>Subnetting</span></h1>
+    <div class="calc-container">
+      <input type="text" id="ipInput" placeholder="Masukkan IP (contoh: 192.168.1.10)">
+      <input type="number" id="maskInput" placeholder="Subnet mask (contoh: 24)" min="0" max="32">
+      <button id="calcBtn">Hitung</button>
+      <button id="resetBtn">Reset</button>
     </div>
+    <div id="result"></div>
+  </section>
 
-    <footer class="footer">©SubnetCalc 2025</footer>
-  </div>
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+    <h1>Quiz <span>Interaktif</span></h1>
+    <div id="quizContainer"></div>
+    <button id="nextQuizBtn">Pertanyaan Selanjutnya</button>
+  </section>
+
+  <!-- AI MENTOR -->
+  <section id="mentor" class="section">
+    <h1>AI <span>Mentor</span></h1>
+    <div id="mentorResponse" class="mentor-bubble">Hai! Aku mentor jaringanmu. Tanya apa aja seputar subnet, IP, atau mask!</div>
+    <div class="mentor-input">
+      <input type="text" id="mentorInput" placeholder="Tulis pertanyaanmu...">
+      <button id="mentorSendBtn">Kirim</button>
+    </div>
+  </section>
+
+  <footer>© 2025 Subnet Universe — Dibuat untuk latihan AI & pemrograman dasar.</footer>
 
   <script src="script.js"></script>
 </body>
