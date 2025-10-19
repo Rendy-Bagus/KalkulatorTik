@@ -2,31 +2,38 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kalkulator Subnet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SubnetCalc</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- tombol mode di pojok kanan atas -->
+  <button class="mode-toggle" id="toggleMode">✪</button>
+
   <div class="container">
-    <h1>Kalkulator Subnet</h1>
-    <p>Masukkan alamat IP dan prefix (CIDR) untuk menghitung jaringan, broadcast, host, dan lainnya.</p>
+    <header class="header">
+      <div class="brand">Subnet<span class="accent">Calc</span></div>
+      <div class="subtitle">Kalkulator Subnetting</div>
+    </header>
 
-    <form id="calcForm">
-      <label for="ipInput">Alamat IP (contoh: 192.168.1.0)</label><br>
-      <input type="text" id="ipInput" placeholder="192.168.55.10" required><br>
-
-      <label for="prefixInput">Prefix / Netmask (angka 0-32)</label><br>
-      <input type="number" id="prefixInput" min="0" max="32" placeholder="24" required><br>
-
-      <button type="submit" id="calcBtn">Hitung</button>
-      <button type="button" id="resetBtn">Reset</button>
-    </form>
-
-    <div id="resultSection" class="result" style="display:none;">
-      <h2>Hasil Perhitungan</h2>
-      <div id="result"></div>
+    <div class="card form-card">
+      <label>Alamat IP</label>
+      <input type="text" id="ip" placeholder="contoh: 192.168.5.10">
+      <label>Subnet Mask (CIDR)</label>
+      <input type="number" id="cidr" min="1" max="30" placeholder="contoh: 24">
+      <div class="row">
+        <button class="btn" id="calc">Hitung</button>
+      </div>
     </div>
+
+    <div class="card result-card" id="result" style="display:none;">
+      <h2>Hasil Perhitungan</h2>
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <footer class="footer">©SubnetCalc 2025</footer>
   </div>
 
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
