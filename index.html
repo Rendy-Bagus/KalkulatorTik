@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Subnet Calculator for TKJ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="brand">Subnet<span class="accent">Calc</span></div>
+      <div class="subtitle">Alat bantu subnetting, masukkan IP/CIDR lalu hitung.</div>
+    </header>
+
+    <section class="card form-card">
+      <form id="calcForm">
+        <label for="ip">IP Address (contoh: 192.168.10.0)</label>
+        <input id="ip" name="ip" placeholder="192.168.10.0" required>
+
+        <label for="prefix">Prefix / Netmask (angka 0–32)</label>
+        <input id="prefix" name="prefix" type="number" min="0" max="32" placeholder="24" required>
+
+        <div class="row">
+          <button class="btn" type="submit">Hitung</button>
+          <button class="btn ghost" type="button" id="clearBtn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="result" class="card result-card" style="display:none">
+      <h2>Hasil Perhitungan</h2>
+      <div class="grid">
+        <div class="gitem"><span class="label">Network</span><span id="network" class="value"></span></div>
+        <div class="gitem"><span class="label">Netmask</span><span id="netmask" class="value"></span></div>
+        <div class="gitem"><span class="label">Broadcast</span><span id="broadcast" class="value"></span></div>
+        <div class="gitem"><span class="label">First Host</span><span id="firstHost" class="value"></span></div>
+        <div class="gitem"><span class="label">Last Host</span><span id="lastHost" class="value"></span></div>
+        <div class="gitem"><span class="label">Jumlah Host</span><span id="numHosts" class="value"></span></div>
+        <div class="gitem"><span class="label">Wildcard Mask</span><span id="wildcard" class="value"></span></div>
+        <div class="gitem"><span class="label">Prefix</span><span id="prefixOut" class="value"></span></div>
+      </div>
+
+      <details style="margin-top:12px"><summary>Detail (JSON)</summary>
+        <pre id="raw" class="raw"></pre>
+      </details>
+    </section>
+
+    <footer class="footer">Proyek: Kalkulator Subnetting prodi TKJ</footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
