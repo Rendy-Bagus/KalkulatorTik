@@ -19,7 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -65,7 +64,21 @@ body {
   width: 100%;
 }
 
-/* SECTION GENERIK */
+.theme-btn {
+  background: var(--primary);
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.4s ease;
+}
+
+.theme-btn:hover {
+  transform: scale(1.1);
+  background: var(--secondary);
+}
+
 .section {
   min-height: 100vh;
   display: flex;
@@ -83,87 +96,28 @@ body {
 
 .cta-btn {
   margin-top: 20px;
-  padding: 14px 30px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   background: var(--primary);
   color: white;
   cursor: pointer;
-  font-size: 1.1em;
-  transition: transform 0.3s ease, background 0.3s ease;
+  font-weight: 600;
+  transition: transform 0.4s ease, background 0.4s ease;
 }
+
 .cta-btn:hover {
   transform: scale(1.05);
   background: var(--secondary);
 }
 
-/* HERO SECTION */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: calc(100vh - 80px);
-  background: url('assets/hero-background-network.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-}
-.hero-overlay {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0 20px;
-}
-.hero-overlay h1 {
-  font-size: 3em;
-  margin-bottom: 0.5em;
-  line-height: 1.2;
-}
-.hero-overlay h1 span {
-  color: var(--secondary);
-}
-.hero-overlay p {
-  font-size: 1.2em;
-  margin-bottom: 1.5em;
-}
-
-/* FEATURES GRID */
-.features-section {
-  background: #f4f8ff;
-  padding: 60px 20px;
-}
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.feature-item {
-  background: white;
-  border-radius: 15px;
-  padding: 30px 20px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.feature-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.feature-item .icon {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-  color: var(--primary);
-}
-
-/* CALCULATOR & FORM */
 .calc-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
 }
+
 .calc-container input {
   padding: 10px 15px;
   border: 2px solid var(--primary);
@@ -172,6 +126,7 @@ body {
   font-size: 1em;
   width: 200px;
 }
+
 .calc-container button {
   padding: 10px 20px;
   background: var(--primary);
@@ -181,12 +136,12 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
 }
+
 .calc-container button:hover {
   transform: scale(1.05);
   background: var(--secondary);
 }
 
-/* QUIZ LEVEL SELECTOR */
 .level-selector {
   margin-bottom: 15px;
   display: flex;
@@ -194,6 +149,7 @@ body {
   gap: 10px;
   justify-content: center;
 }
+
 .level-selector select, .level-selector button {
   padding: 8px 15px;
   font-size: 1em;
@@ -201,17 +157,18 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+
 .level-selector button {
   background: var(--primary);
   color: white;
   border: none;
 }
+
 .level-selector button:hover {
   background: var(--secondary);
   transform: scale(1.02);
 }
 
-/* RESULT BOX, LIST & STATS */
 .result-box {
   margin-top: 20px;
   padding: 20px;
@@ -223,20 +180,22 @@ body {
   word-wrap: break-word;
   text-align: left;
 }
+
 #quizStats {
   text-align: center;
   font-weight: 500;
 }
+
 #stepsList {
   text-align: left;
   margin: 0 auto;
   max-width: 500px;
 }
+
 #stepsList li {
   margin-bottom: 8px;
 }
 
-/* MENTOR SECTION */
 .mentor-bubble {
   background: rgba(0, 123, 255, 0.07);
   padding: 15px;
@@ -247,18 +206,21 @@ body {
   min-height: 60px;
   transition: all var(--transition);
 }
+
 .mentor-input {
   display: flex;
   justify-content: center;
   margin-top: 10px;
   gap: 10px;
 }
+
 .mentor-input input {
   flex: 1;
   padding: 10px 15px;
   border-radius: 10px;
   border: 1px solid var(--primary);
 }
+
 .mentor-input button {
   padding: 10px 15px;
   border-radius: 10px;
@@ -268,11 +230,26 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+
 .mentor-input button:hover {
   transform: scale(1.1);
 }
 
-/* FOOTER */
+.dark-mode {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.dark-mode .navbar {
+  background: rgba(10,10,18,0.7);
+}
+
+.dark-mode .calc-container input {
+  background: #11131d;
+  color: #eee;
+  border-color: var(--secondary);
+}
+
 footer {
   text-align: center;
   padding: 30px;
@@ -280,13 +257,10 @@ footer {
   opacity: 0.8;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .calc-container input, .calc-container button, .level-selector select, .level-selector button {
     width: 90%;
   }
   .mentor-input { flex-direction: column; }
-  .hero-overlay h1 { font-size: 2.2em; }
-  .hero-overlay p  { font-size: 1em; }
 }
