@@ -42,5 +42,5 @@ btnCalc.addEventListener("click", () => {
 
 btnMode.addEventListener("click", () => {
   document.body.classList.toggle("dark");
-  btnMode.textContent = document.body.classList.contains("dark") ? "𖤓" : "☾"
+  btnMode.textContent = document.body.classList.contains("dark") ? "☀" : "✪"
 });
