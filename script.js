@@ -1,9 +1,11 @@
-// Theme toggle
-const themeBtn = document.getElementById('themeBtn');
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  themeBtn.textContent =
-    document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+// Smooth scroll behavior already via CSS but any extra scroll logic here
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.feature-item').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      el.classList.add('visible');
+    }
+  });
 });
 
 // Calculator + Langkah-Langkah
@@ -79,7 +81,7 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   document.getElementById('stepByStepContainer').style.display = 'none';
 });
 
-// Quiz dengan levels & skor
+// Quiz dengan level & skor
 const quizLevels = {
   easy: [
     { q: "Apa kepanjangan dari IP?", a: "Internet Protocol" },
@@ -158,7 +160,6 @@ function showQuiz() {
     <button id="checkBtn">Periksa</button>
     <div id="quizFeedback"></div>
   `;
-
   document.getElementById('checkBtn').onclick = () => {
     const ans = document.getElementById('quizAnswer').value.trim();
     const feedback = document.getElementById('quizFeedback');
@@ -172,24 +173,3 @@ function showQuiz() {
     nextBtn.style.display = 'inline-block';
   };
 }
-
-// AI Mentor sederhana
-document.getElementById('mentorSendBtn').addEventListener('click', () => {
-  const input = document.getElementById('mentorInput').value.trim().toLowerCase();
-  const bubble = document.getElementById('mentorResponse');
-  if (!input) return;
-  bubble.innerHTML = `<em>Mikir sebentar…</em>`;
-  setTimeout(() => {
-    let response = "";
-    if (input.includes("subnet mask")) {
-      response = "Subnet mask adalah pembagi antara bagian jaringan (network) dan bagian perangkat (host). Contoh: 255.255.255.0 artinya 24 bit untuk jaringan dan 8 bit untuk host. Jadi tiap alamat IP dalam jaringan itu punya bagian milik jaringan yang sama, dan bagian host yang berbeda. Dengan memahami ini, kita bisa menentukan network address, broadcast, dan jumlah host valid dalam satu jaringan.";
-    } else if (input.includes("ip address")) {
-      response = "IP Address adalah alamat unik untuk tiap perangkat dalam jaringan komputer. Bayangkan rumah dalam komplek: tiap rumah punya nomor unik supaya paket surat bisa sampai. Begitu juga IP di jaringan. Misalnya 192.168.1.10 artinya perangkat itu punya alamat dalam jaringan 192.168.1.0/24. Penting juga memahami bahwa bagian awal bisa menunjukkan jaringan, dan bagian akhir menunjukkan perangkat.";
-    } else if (input.includes("host")) {
-      response = "Host dalam konteks jaringan ialah perangkat akhir (komputer, ponsel, printer) yang mendapat alamat IP dan bisa mengirim/terima data. Saat kita membuat subnet, kita sering menghitung ‘jumlah host valid’ yang bisa digunakan — karena dua alamat disediakan untuk network address dan broadcast sehingga host yang bisa dipakai lebih sedikit daripada total alamat.";
-    } else {
-      response = "Pertanyaan menarik! Bisa kamu spesifikasikan sedikit: misalnya ‘bagaimana cara menghitung jumlah host?’, atau ‘apa itu broadcast address?’. Aku akan bantu dengan penjelasan dan contoh mudah.";
-    }
-    bubble.textContent = response;
-  }, 800);
-});
