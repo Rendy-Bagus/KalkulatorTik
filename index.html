@@ -3,37 +3,434 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SubnetCalc</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Subnet Universe — TKJ Futuristik</title>
+  <style>
+  /* === THEME BASE === */
+  :root {
+    --bg-light: #ffffff;
+    --bg-dark: #0a0a12;
+    --text-light: #0a0a12;
+    --text-dark: #e4e7f1;
+    --primary: #007bff;
+    --secondary: #00aaff;
+    --transition: 0.6s ease;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-light);
+    transition: background var(--transition), color var(--transition);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* === NAVBAR === */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .navbar .logo {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 1px;
+  }
+
+  .nav-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    position: relative;
+    transition: color var(--transition);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background: var(--primary);
+    transition: width 0.4s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .theme-btn {
+    background: var(--primary);
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background var(--transition), transform 0.4s ease;
+  }
+  .theme-btn:hover {
+    transform: scale(1.1);
+    background: var(--secondary);
+  }
+
+  /* === SECTIONS === */
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 50px;
+    text-align: center;
+    transition: background var(--transition);
+  }
+
+  .section h1 span {
+    color: var(--primary);
+  }
+
+  .cta-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.4s ease, background 0.4s ease;
+  }
+
+  .cta-btn:hover {
+    transform: scale(1.05);
+    background: var(--secondary);
+  }
+
+  /* === CALCULATOR === */
+  .calc-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .calc-container input {
+    padding: 10px 15px;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    outline: none;
+    font-size: 1em;
+  }
+
+  .calc-container button {
+    padding: 10px 25px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .calc-container button:hover {
+    transform: scale(1.05);
+    background: var(--secondary);
+  }
+
+  .result-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0, 123, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    width: 80%;
+    max-width: 500px;
+    word-wrap: break-word;
+  }
+
+  /* === QUIZ === */
+  #quizContainer {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 500px;
+  }
+
+  #nextQuizBtn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: var(--secondary);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  #nextQuizBtn:hover {
+    transform: scale(1.1);
+  }
+
+  /* === MENTOR === */
+  .mentor-bubble {
+    background: rgba(0, 123, 255, 0.07);
+    padding: 15px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px auto;
+    min-height: 60px;
+    transition: all var(--transition);
+  }
+
+  .mentor-input {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .mentor-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+  }
+
+  .mentor-input button {
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .mentor-input button:hover {
+    transform: scale(1.1);
+  }
+
+  /* === DARK MODE === */
+  .dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+  .dark-mode .navbar {
+    background: rgba(10,10,18,0.7);
+  }
+  .dark-mode .calc-container input {
+    background: #11131d;
+    color: #eee;
+    border-color: var(--secondary);
+  }
+
+  /* === FOOTER === */
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 0.9em;
+    opacity: 0.8;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .calc-container input, .calc-container button { width: 90%; }
+    .mentor-input { flex-direction: column; }
+  }
+  </style>
 </head>
+
 <body>
-  <!-- tombol mode di pojok kanan atas -->
-  <button class="mode-toggle" id="toggleMode">✪</button>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="logo">Subnet<span class="accent">Universe</span></div>
+    <div class="nav-links">
+      <a href="#home">Beranda</a>
+      <a href="#calc">Kalkulator</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#mentor">Mentor</a>
+    </div>
+    <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
+  </nav>
 
-  <div class="container">
-    <header class="header">
-      <div class="brand">Subnet<span class="accent">Calc</span></div>
-      <div class="subtitle">Kalkulator Subnetting</div>
-    </header>
+  <!-- HOME SECTION -->
+  <section id="home" class="section">
+    <h1>Selamat datang di <span>Subnet Universe</span></h1>
+    <p>Platform interaktif untuk anak TKJ belajar jaringan secara visual dan praktis.</p>
+    <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({behavior:'smooth'})">Mulai Hitung</button>
+  </section>
 
-    <div class="card form-card">
-      <label>Alamat IP</label>
-      <input type="text" id="ip" placeholder="contoh: 192.168.5.10">
-      <label>Subnet Mask (CIDR)</label>
-      <input type="number" id="cidr" min="1" max="30" placeholder="contoh: 24">
-      <div class="row">
-        <button class="btn" id="calc">Hitung</button>
+  <!-- CALCULATOR -->
+  <section id="calc" class="section">
+    <h1>Kalkulator <span>Subnetting</span></h1>
+    <div class="calc-container">
+      <input type="text" id="ipInput" placeholder="Masukkan IP (contoh: 192.168.1.10)">
+      <input type="number" id="maskInput" placeholder="Subnet mask (contoh: 24)">
+      <button onclick="calcSubnet()">Hitung</button>
+    </div>
+    <div id="result"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+    <h1>Quiz <span>Interaktif</span></h1>
+    <div id="quizContainer"></div>
+    <button id="nextQuizBtn" onclick="nextQuiz()">Pertanyaan Selanjutnya</button>
+  </section>
+
+  <!-- AI MENTOR -->
+  <section id="mentor" class="section">
+    <h1>AI <span>Mentor</span></h1>
+    <div id="mentorResponse" class="mentor-bubble">Hai! Aku mentor jaringanmu. Tanya apa aja seputar subnet, IP, atau mask!</div>
+    <div class="mentor-input">
+      <input type="text" id="mentorInput" placeholder="Tulis pertanyaanmu...">
+      <button onclick="askMentor()">Kirim</button>
+    </div>
+  </section>
+
+  <footer>© 2025 Subnet Universe — Dibuat untuk latihan AI & pemrograman dasar.</footer>
+
+  <script>
+  /* === SMOOTH NAVIGATION === */
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* === DARK / LIGHT MODE TOGGLE === */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    themeBtn.textContent = 
+      document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+  });
+
+  /* === SUBNET CALCULATOR === */
+  function calcSubnet() {
+    const ip = document.getElementById('ipInput').value;
+    const mask = parseInt(document.getElementById('maskInput').value);
+    const resultDiv = document.getElementById('result');
+    
+    if (!ip || mask < 0 || mask > 32) {
+      resultDiv.innerHTML = `<p style="color:red;">Masukkan IP & subnet mask valid!</p>`;
+      return;
+    }
+
+    try {
+      const ipParts = ip.split('.').map(Number);
+      const maskBits = 0xffffffff << (32 - mask);
+      const ipNum = (ipParts[0]<<24) | (ipParts[1]<<16) | (ipParts[2]<<8) | ipParts[3];
+      const netAddr = ipNum & maskBits;
+      const broadAddr = netAddr | (~maskBits >>> 0);
+      
+      const net = [
+        (netAddr>>>24)&255,
+        (netAddr>>>16)&255,
+        (netAddr>>>8)&255,
+        netAddr&255
+      ].join('.');
+      const broad = [
+        (broadAddr>>>24)&255,
+        (broadAddr>>>16)&255,
+        (broadAddr>>>8)&255,
+        broadAddr&255
+      ].join('.');
+
+      const hostCount = Math.pow(2, 32 - mask) - 2;
+
+      resultDiv.innerHTML = `
+        <div class="result-box">
+          <h3>Hasil Perhitungan</h3>
+          <p><b>Network Address:</b> ${net}</p>
+          <p><b>Broadcast Address:</b> ${broad}</p>
+          <p><b>Jumlah Host:</b> ${hostCount}</p>
+        </div>
+      `;
+    } catch {
+      resultDiv.innerHTML = `<p style="color:red;">Format IP tidak valid!</p>`;
+    }
+  }
+
+  /* === QUIZ INTERAKTIF === */
+  const quizData = [
+    { q: "Berapa bit untuk subnet mask /24?", a: "255.255.255.0" },
+    { q: "Berapa jumlah host pada /30?", a: "2" },
+    { q: "Subnet mask /16 artinya berapa bit network?", a: "16" },
+  ];
+  let quizIndex = 0;
+
+  function showQuiz() {
+    const container = document.getElementById('quizContainer');
+    const q = quizData[quizIndex];
+    container.innerHTML = `
+      <div class="quiz-box">
+        <p><b>${q.q}</b></p>
+        <input type="text" id="quizAnswer" placeholder="Jawaban kamu...">
+        <button id="checkBtn">Periksa</button>
+        <div id="quizResult"></div>
       </div>
-    </div>
+    `;
 
-    <div class="card result-card" id="result" style="display:none;">
-      <h2>Hasil Perhitungan</h2>
-      <div class="grid" id="grid"></div>
-    </div>
+    document.getElementById('checkBtn').onclick = () => {
+      const ans = document.getElementById('quizAnswer').value.trim();
+      const result = document.getElementById('quizResult');
+      if (ans.toLowerCase() === q.a.toLowerCase()) {
+        result.innerHTML = "✅ Benar!";
+      } else {
+        result.innerHTML = `❌ Salah! Jawaban: <b>${q.a}</b>`;
+      }
+    };
+  }
 
-    <footer class="footer">©SubnetCalc 2025</footer>
-  </div>
+  function nextQuiz() {
+    quizIndex = (quizIndex + 1) % quizData.length;
+    showQuiz();
+  }
 
-  <script src="app.js"></script>
+  /* === AI MENTOR SIMULATOR === */
+  function askMentor() {
+    const input = document.getElementById('mentorInput').value.trim();
+    const bubble = document.getElementById('mentorResponse');
+    if (!input) return;
+
+    bubble.innerHTML = `<em>...</em>`;
+    setTimeout(() => {
+      let response;
+      if (input.includes("subnet")) response = "Subnetting membagi jaringan jadi lebih kecil biar efisien.";
+      else if (input.includes("ip")) response = "IP Address itu alamat unik untuk tiap perangkat di jaringan.";
+      else if (input.includes("mask")) response = "Subnet mask menentukan bagian network dan host dari IP.";
+      else if (input.includes("halo")) response = "Halo juga! Siap bantu kamu belajar TKJ 🚀";
+      else response = "Hmm... coba pertanyaan lain tentang jaringan atau subnetting ya.";
+      bubble.textContent = response;
+    }, 900);
+  }
+
+  /* === EASTER EGG === */
+  window.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'e') {
+      alert('✨ Kamu nemuin easter egg: versi TKJ Futuristik Mode!');
+    }
+  });
+
+  /* === INIT === */
+  showQuiz();
+  </script>
 </body>
 </html>
