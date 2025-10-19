@@ -1,71 +1,147 @@
-/* style.css */
+:root {
+  --bg: #ffffff;
+  --primary: #0b69ff;
+  --muted: #f4f7fb;
+  --text: #0f1724;
+  --card-shadow: 0 10px 30px rgba(11,105,255,0.08);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+body.dark {
+  --bg: #0f1724;
+  --primary: #4a90ff;
+  --muted: #1a2438;
+  --text: #f4f7fb;
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; transition: var(--transition); }
+
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg), #fbfdff);
+  text-align: center;
+}
+
+/* tombol mode di pojok kanan atas */
+.mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--muted);
+  border: 1px solid rgba(11,105,255,0.12);
+  color: var(--primary);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+.mode-toggle:hover {
+  transform: scale(1.1);
+  background: var(--primary);
+  color: #fff;
 }
 
 .container {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-radius: 4px;
+  max-width: 920px;
+  margin: 28px auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
+.header { display: flex; flex-direction: column; gap: 6px; }
+.brand { font-weight: 800; font-size: 20px; }
+.brand .accent { color: var(--primary); }
+.subtitle { color: rgba(15,23,36,0.6); font-size: 13px; }
+
+.card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--card-shadow);
 }
 
-form {
-  margin-top: 20px;
-}
-
-input[type="text"],
-input[type="number"] {
+label { display: block; font-weight: 600; margin-top: 8px; font-size: 13px; }
+input {
   width: 100%;
-  padding: 8px;
-  margin: 8px 0 16px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 2px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(11,105,255,0.08);
+  margin-top: 6px;
+  font-size: 14px;
 }
 
-button {
-  padding: 10px 16px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 2px;
-  background-color: #007BFF;
-  color: #fff;
+.row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+.btn {
+  position: relative;
+  background: var(--primary);
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
 }
 
-button#resetBtn {
-  background-color: #6c757d;
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transition: top 0.5s ease;
 }
 
-button:hover {
-  opacity: 0.9;
+.btn:active::before { top: -50%; }
+.btn:hover { filter: brightness(1.05); transform: scale(1.02); }
+
+.result-card h2 { margin: 0 0 10px 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+
+.gitem {
+  background: var(--muted);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
-.result {
-  margin-top: 30px;
-  padding: 15px;
-  background-color: #e9ecef;
-  border-radius: 2px;
+.label { font-size: 12px; color: rgba(15,23,36,0.6); }
+.value { font-weight: 800; margin-top: 6px; }
+
+.footer {
+  text-align: center;
+  color: rgba(15,23,36,0.5);
+  font-size: 13px;
+  margin-top: 8px;
 }
 
-.result h2 {
-  margin-top: 0;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container { max-width: 90%; }
 }
 
-.result p {
-  margin: 6px 0;
-  color: #333;
+@media (max-width: 600px) {
+  .container { padding: 12px; }
+  .grid { grid-template-columns: 1fr; }
+  .btn { width: 100%; text-align: center; }
+  .brand { font-size: 18px; }
+  input { font-size: 13px; }
+  .mode-toggle { top: 14px; right: 14px; width: 40px; height: 40px; font-size: 18px; }
 }
