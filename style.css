@@ -1,5 +1,5 @@
 /* ============================================
-   THEME COLORS & GLOBAL VARIABLES
+   THEME COLORS
    ============================================ */
 :root {
   --bg-light: #ffffff;
@@ -12,7 +12,7 @@
 }
 
 /* ============================================
-   GLOBAL BODY STYLE
+   GLOBAL BODY
    ============================================ */
 body {
   margin: 0;
@@ -22,7 +22,6 @@ body {
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 /* ============================================
@@ -42,37 +41,22 @@ body {
   z-index: 1000;
 }
 
-.navbar .logo {
+.logo {
   font-size: 1.3em;
   font-weight: 700;
   color: var(--primary);
-  letter-spacing: 1px;
 }
 
-/* Link navbar */
 .nav-links a {
   margin: 0 10px;
   text-decoration: none;
   color: var(--text-light);
   font-weight: 500;
-  position: relative;
-  transition: color var(--transition);
 }
 
-/* Efek garis bawah animasi */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -3px;
-  left: 0;
-  background: var(--primary);
-  transition: width 0.4s ease;
-}
-.nav-links a:hover::after { width: 100%; }
-
-/* Tombol theme */
+/* ============================================
+   THEME BUTTON
+   ============================================ */
 .theme-btn {
   background: var(--primary);
   border: none;
@@ -80,7 +64,7 @@ body {
   color: white;
   border-radius: 20px;
   cursor: pointer;
-  transition: background var(--transition), transform 0.4s ease;
+  transition: 0.3s;
 }
 .theme-btn:hover {
   transform: scale(1.1);
@@ -92,11 +76,7 @@ body {
    ============================================ */
 .section {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 100px 20px 50px;
+  padding: 120px 20px 50px;
   text-align: center;
 }
 
@@ -104,7 +84,7 @@ body {
   color: var(--primary);
 }
 
-/* Tombol CTA */
+/* CTA BUTTON */
 .cta-btn {
   margin-top: 20px;
   padding: 12px 25px;
@@ -114,94 +94,76 @@ body {
   color: white;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.4s ease, background 0.4s ease;
 }
 .cta-btn:hover {
-  transform: scale(1.05);
   background: var(--secondary);
+  transform: scale(1.05);
 }
 
 /* ============================================
-   SUBNETTING CALCULATOR
+   CALCULATOR
    ============================================ */
 .calc-container {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .calc-container input {
   padding: 10px 15px;
   border: 2px solid var(--primary);
-  border-radius: 10px;
-  outline: none;
+  border-radius: 12px;
   width: 200px;
 }
 
-.calc-container button {
-  padding: 10px 20px;
+/* ============================================
+   QUIZ BUTTONS (BARU)
+   ============================================ */
+.quiz-btn {
+  padding: 12px 25px;
   background: var(--primary);
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 25px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  font-size: 1.05em;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.25);
 }
-.calc-container button:hover {
+
+.quiz-btn:hover {
   transform: scale(1.05);
   background: var(--secondary);
 }
 
 /* ============================================
-   QUIZ SYSTEM
+   QUIZ OPTIONS
    ============================================ */
-.level-selector {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-}
-
 .mcq-btn {
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 10px;
   background: rgba(0,123,255,0.08);
   border: 2px solid var(--primary);
-  border-radius: 12px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
-.mcq-btn:hover {
-  background: var(--primary);
-  color: #fff;
-  transform: scale(1.03);
-}
-
-.mcq-btn.correct {
-  background: #28c76f;
-  color: white;
-}
-
-.mcq-btn.wrong {
-  background: #ff4d4d;
-  color: white;
-}
+.mcq-btn:hover { background: var(--primary); color: white; }
+.mcq-btn.correct { background: #28c76f !important; }
+.mcq-btn.wrong { background: #ff4d4d !important; }
 
 /* ============================================
    RESULT BOX
    ============================================ */
 .result-box {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 15px;
   background: rgba(0, 123, 255, 0.05);
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  width: 80%;
-  max-width: 500px;
-  text-align: left;
+  border-radius: 12px;
+  margin-top: 20px;
 }
 
 /* ============================================
@@ -211,23 +173,8 @@ body {
   background: rgba(0, 123, 255, 0.07);
   padding: 15px;
   border-radius: 15px;
-  width: 80%;
   max-width: 500px;
-  margin: 10px auto;
-}
-
-.mentor-input {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.mentor-input input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid var(--primary);
+  margin: auto;
 }
 
 /* ============================================
@@ -238,11 +185,15 @@ body {
   color: var(--text-dark);
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
-footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.8;
+.dark-mode .quiz-btn {
+  background: var(--secondary);
+}
+.dark-mode .quiz-btn:hover {
+  background: var(--primary);
+}
+
+.dark-mode .mcq-btn {
+  background: #11131d;
+  border-color: var(--secondary);
+  color: var(--text-dark);
 }
