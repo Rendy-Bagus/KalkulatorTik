@@ -32,6 +32,7 @@
   <!-- CALCULATOR SECTION -->
   <section id="calc" class="section">
     <h1>Kalkulator <span>Subnetting</span></h1>
+
     <div class="calc-container">
       <input type="text" id="ipInput" placeholder="Masukkan IP (contoh: 192.168.1.10)">
       <input type="number" id="maskInput" placeholder="Subnet mask (contoh: 24)" min="0" max="32">
@@ -58,12 +59,12 @@
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
-      <button id="startQuizBtn">Mulai Quiz</button>
+      <button id="startQuizBtn" class="quiz-btn">Mulai Quiz</button>
     </div>
 
     <div id="quizContainer"></div>
 
-    <button id="nextQuizBtn" style="display:none;">Pertanyaan Selanjutnya</button>
+    <button id="nextQuizBtn" class="quiz-btn" style="display:none;">Pertanyaan Selanjutnya</button>
 
     <div id="quizStats" class="result-box" style="margin-top:20px;"></div>
   </section>
