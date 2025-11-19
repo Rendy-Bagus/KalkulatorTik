@@ -41,10 +41,11 @@ body {
   z-index: 1000;
 }
 
-.logo {
+.navbar .logo {
   font-size: 1.3em;
   font-weight: 700;
   color: var(--primary);
+   letter-spacing: 1px;
 }
 
 .nav-links a {
@@ -52,6 +53,8 @@ body {
   text-decoration: none;
   color: var(--text-light);
   font-weight: 500;
+   position: relative;
+   transition: color var (--transition);
 }
 
 /* ============================================
@@ -69,6 +72,7 @@ body {
   border-radius: 50px;
   animation: chargeBar 2s infinite;
 }
+.nav-links a: hover::after { width: 100%; }
 
 /* Dark Mode */
 .dark-mode .nav-links a::after {
