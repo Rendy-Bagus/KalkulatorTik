@@ -11,21 +11,24 @@
   <!-- NAVIGATION -->
   <nav class="navbar">
     <div class="logo">Subnet<span class="accent">Universe</span></div>
-    <div class="nav-links">
+
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+
+    <div class="nav-links" id="navLinks">
       <a href="#home">Beranda</a>
       <a href="#calc">Kalkulator</a>
       <a href="#quiz">Quiz</a>
       <a href="#mentor">Mentor</a>
     </div>
+
+    <button id="themeBtn" class="theme-btn">🌙 Dark Mode</button>
   </nav>
 
   <!-- HOME SECTION -->
-  <section id="home" class="section hero-section">
-    <div class="hero-overlay">
-      <h1>Selamat datang di <span>Subnet Universe</span></h1>
-      <p>Platform interaktif untuk anak TKJ belajar jaringan secara visual dan praktis.</p>
-      <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({ behavior:'smooth' })">Mulai Hitung</button>
-    </div>
+  <section id="home" class="section">
+    <h1>Selamat datang di <span>Subnet Universe</span></h1>
+    <p>Platform interaktif untuk anak TKJ belajar jaringan secara visual dan praktis.</p>
+    <button class="cta-btn" onclick="document.getElementById('calc').scrollIntoView({ behavior:'smooth' })">Mulai Hitung</button>
   </section>
 
   <!-- CALCULATOR SECTION -->
@@ -49,7 +52,7 @@
   <section id="quiz" class="section">
     <h1>Quiz <span>Interaktif</span></h1>
     <div class="level-selector">
-      <label for="quizLevelSelect">Pilih Level: </label>
+      <label>Pilih Level: </label>
       <select id="quizLevelSelect">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
@@ -57,8 +60,10 @@
       </select>
       <button id="startQuizBtn">Mulai Quiz</button>
     </div>
+
     <div id="quizContainer"></div>
     <button id="nextQuizBtn" style="display:none;">Pertanyaan Selanjutnya</button>
+
     <div id="quizStats" class="result-box" style="margin-top:20px;"></div>
   </section>
 
