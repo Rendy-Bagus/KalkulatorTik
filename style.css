@@ -52,6 +52,10 @@ body {
   letter-spacing: 1px;
 }
 
+.accent {
+  color: var(--secondary);
+}
+
 /* Link navbar */
 .nav-links a {
   margin: 0 10px;
@@ -230,8 +234,6 @@ body {
   background: var(--secondary);
   transform: scale(1.02);
 }
-
-
 
 /* ============================================
    RESULT BOX (Hasil hitungan + statistik kuis)
