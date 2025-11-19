@@ -53,15 +53,15 @@
     <h1>Quiz <span>Interaktif</span></h1>
 
     <div class="level-selector">
-      <label for="quizLevelSelect" class="quiz-btn">Pilih Level: </label>
+      <label for="quizLevelSelect">Pilih Level: </label>
       <select id="quizLevelSelect">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
+        <option value="easy" class="quiz-btn">Easy</option>
+        <option value="medium" class="quiz-btn">Medium</option>
+        <option value="hard" class="quiz-btn">Hard</option>
       </select>
       <button id="startQuizBtn" class="quiz-btn">Mulai Quiz</button>
     </div>
-
+ 
     <div id="quizContainer"></div>
 
     <button id="nextQuizBtn" class="quiz-btn" style="display:none;">Pertanyaan Selanjutnya</button>
@@ -77,7 +77,7 @@
     </div>
     <div class="mentor-input">
       <input type="text" id="mentorInput" placeholder="Tulis pertanyaanmu...">
-      <button id="mentorSendBtn">Kirim</button>
+      <button id="mentorSendBtn" class="quiz-btn">Kirim</button>
     </div>
   </section>
 
