@@ -5,7 +5,7 @@
   --text-dark: #e4e7f1;
   --primary: #007bff;
   --secondary: #00aaff;
-  --transition: 0.6s ease;
+  --transition: 0.4s ease;
 }
 
 body {
@@ -15,10 +15,10 @@ body {
   background: var(--bg-light);
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -33,206 +33,67 @@ body {
   z-index: 1000;
 }
 
-.navbar .logo {
-  font-size: 1.3em;
+.logo {
+  font-size: 1.4em;
   font-weight: 700;
   color: var(--primary);
-  letter-spacing: 1px;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 20px;
 }
 
 .nav-links a {
-  margin: 0 10px;
-  text-decoration: none;
   color: var(--text-light);
+  text-decoration: none;
   font-weight: 500;
-  position: relative;
   transition: color var(--transition);
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -3px;
-  left: 0;
-  background: var(--primary);
-  transition: width 0.4s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
 }
 
 .theme-btn {
   background: var(--primary);
   border: none;
   padding: 8px 15px;
-  color: white;
   border-radius: 20px;
+  color: white;
   cursor: pointer;
-  transition: background var(--transition), transform 0.4s ease;
+  transition: 0.3s;
 }
 
-.theme-btn:hover {
-  transform: scale(1.1);
-  background: var(--secondary);
-}
-
+/* SECTIONS */
 .section {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 100px 20px 50px;
+  padding: 120px 20px 50px;
   text-align: center;
-  transition: background var(--transition);
-}
-
-.section h1 span {
-  color: var(--primary);
-}
-
-.cta-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 50px;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  transition: transform 0.4s ease, background 0.4s ease;
-}
-
-.cta-btn:hover {
-  transform: scale(1.05);
-  background: var(--secondary);
-}
-
-.calc-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-
-.calc-container input {
-  padding: 10px 15px;
-  border: 2px solid var(--primary);
-  border-radius: 10px;
-  outline: none;
-  font-size: 1em;
-  width: 200px;
-}
-
-.calc-container button {
-  padding: 10px 20px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.calc-container button:hover {
-  transform: scale(1.05);
-  background: var(--secondary);
-}
-
-.level-selector {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-}
-
-.level-selector select, .level-selector button {
-  padding: 8px 15px;
-  font-size: 1em;
-  border: 2px solid var(--primary);
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.level-selector button {
-  background: var(--primary);
-  color: white;
-  border: none;
-}
-
-.level-selector button:hover {
-  background: var(--secondary);
-  transform: scale(1.02);
 }
 
 .result-box {
   margin-top: 20px;
   padding: 20px;
+  background: rgba(0, 123, 255, 0.08);
   border-radius: 15px;
-  background: rgba(0, 123, 255, 0.05);
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  width: 80%;
   max-width: 500px;
-  word-wrap: break-word;
-  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#quizStats {
-  text-align: center;
-  font-weight: 500;
-}
-
-#stepsList {
-  text-align: left;
-  margin: 0 auto;
-  max-width: 500px;
-}
-
-#stepsList li {
-  margin-bottom: 8px;
-}
-
+/* MENTOR */
 .mentor-bubble {
-  background: rgba(0, 123, 255, 0.07);
+  background: rgba(0, 123, 255, 0.12);
   padding: 15px;
   border-radius: 15px;
-  width: 80%;
   max-width: 500px;
-  margin: 10px auto;
-  min-height: 60px;
-  transition: all var(--transition);
-}
-
-.mentor-input {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.mentor-input input {
-  flex: 1;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid var(--primary);
-}
-
-.mentor-input button {
-  padding: 10px 15px;
-  border-radius: 10px;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.mentor-input button:hover {
-  transform: scale(1.1);
+  margin: auto;
 }
 
 .dark-mode {
@@ -244,24 +105,26 @@ body {
   background: rgba(10,10,18,0.7);
 }
 
-.dark-mode .calc-container input {
-  background: #11131d;
-  color: #eee;
-  border-color: var(--secondary);
+.dark-mode .mentor-bubble {
+  background: rgba(255,255,255,0.08);
 }
 
-footer {
-  text-align: center;
-  padding: 30px;
-  font-size: 0.9em;
-  opacity: 0.8;
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .calc-container input, .calc-container button, .level-selector select, .level-selector button {
-    width: 90%;
+  .hamburger {
+    display: block;
   }
-  .mentor-input { flex-direction: column; }
+
+  #navLinks {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  #navLinks.active {
+    display: flex;
+  }
 }
-                                                                                                                                                                                               style.css
