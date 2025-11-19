@@ -55,32 +55,33 @@ body {
 }
 
 /* ============================================
-   NAVBAR LOADING ANIMATION
+   NAVBAR TEXT BATTERY CHARGING EFFECT
    ============================================ */
 
-.nav-loading {
+.nav-links a::after {
+  content: '';
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: -4px;
   height: 3px;
   width: 0%;
   background: var(--primary);
-  animation: navLoading 2s infinite;
   border-radius: 50px;
+  animation: chargeBar 2s infinite;
 }
 
-/* Dark Mode Warna */
-.dark-mode .nav-loading {
+/* Dark Mode */
+.dark-mode .nav-links a::after {
   background: var(--secondary);
 }
 
-/* Animasi */
-@keyframes navLoading {
-  0% { width: 0%; left: 0; }
-  50% { width: 100%; left: 0; }
-  100% { width: 0%; left: 100%; }
+/* Efek */
+@keyframes chargeBar {
+  0% { width: 0%; opacity: 0.2; }
+  40% { width: 60%; opacity: 0.8; }
+  70% { width: 100%; opacity: 1; }
+  100% { width: 0%; opacity: 0.3; }
 }
-
 
 /* ============================================
    THEME BUTTON
