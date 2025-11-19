@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subnet Universe — TKJ Futuristik</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -36,7 +36,7 @@
       <button id="calcBtn">Hitung</button>
       <button id="resetBtn">Reset</button>
     </div>
-    <div id="result"></div>
+    <div id="calcResult"></div>
 
     <div id="stepByStepContainer" class="result-box" style="display:none;">
       <h3>Langkah-Langkah Perhitungan</h3>
@@ -45,32 +45,27 @@
   </section>
 
   <!-- QUIZ SECTION -->
-<section id="quiz" class="section">
-  <h1>Quiz <span>Interaktif</span></h1>
+  <section id="quiz" class="section">
+    <h1>Quiz <span>Interaktif</span></h1>
 
-  <div class="level-selector">
-    <label for="quizLevelSelect">Pilih Level: </label>
-    <select id="quizLevelSelect">
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">Hard</option>
-    </select>
-    <button id="startQuizBtn">Mulai Quiz</button>
-  </div>
+    <div class="level-selector">
+      <label for="quizLevelSelect">Pilih Level: </label>
+      <select id="quizLevelSelect">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <button id="startQuizBtn">Mulai Quiz</button>
+    </div>
 
-  <div id="quizContainer">
-      <p id="questionText"></p>
+    <div id="quizContainer" class="quiz-box">
+      <!-- Konten kuis akan dirender oleh script.js -->
+    </div>
 
-      <div id="optionsContainer"></div>
+    <button id="nextQuizBtn" style="display:none;">Pertanyaan Selanjutnya</button>
 
-      <button id="checkAnswer" style="display:none;">Cek Jawaban</button>
-      <p id="result"></p>
-  </div>
-
-  <button id="nextQuizBtn" style="display:none;">Pertanyaan Selanjutnya</button>
-
-  <div id="quizStats" class="result-box" style="margin-top:20px;"></div>
-</section>
+    <div id="quizStats" class="result-box" style="margin-top:20px;"></div>
+  </section>
 
   <!-- AI MENTOR SECTION -->
   <section id="mentor" class="section">
