@@ -167,14 +167,64 @@ body {
 }
 
 /* ============================================
-   AI MENTOR
+   AI MENTOR (ChatBot kecil)
    ============================================ */
 .mentor-bubble {
   background: rgba(0, 123, 255, 0.07);
   padding: 15px;
   border-radius: 15px;
+  width: 80%;
   max-width: 500px;
-  margin: auto;
+  margin: 10px auto;
+  min-height: 60px;
+}
+
+.mentor-input {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.mentor-input input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 25px;
+  border: 2px solid var(--primary);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  color: var(--text-light);
+  font-size: 1em;
+  transition: 0.3s ease;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+.mentor-input input::placeholder {
+  color: #cccccc;
+  opacity: 0.8;
+}
+
+.mentor-input input:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.dark-mode .mentor-input input {
+  background: rgba(30, 30, 40, 0.6);
+  border: 2px solid var(--secondary);
+  color: var(--text-dark);
+  box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+}
+
+.dark-mode .mentor-input input:focus {
+  background: rgba(40, 40, 55, 0.6);
+  box-shadow: 0 0 18px rgba(0, 170, 255, 0.6);
+}
+
+.dark-mode .mentor-input input::placeholder {
+  color: #dddddd;
 }
 
 /* ============================================
