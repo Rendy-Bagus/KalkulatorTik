@@ -1,123 +1,231 @@
-// ========== NAVBAR HAMBURGER ==========
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.getElementById("navLinks");
-
-hamburgerBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-// ========== THEME MODE ==========
+// ========== THEME TOGGLE ==========
 const themeBtn = document.getElementById("themeBtn");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  themeBtn.textContent = "☀ Light Mode";
+}
+
 themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  themeBtn.textContent =
-    document.body.classList.contains("dark-mode")
-      ? "☀️ Light Mode"
-      : "🌙 Dark Mode";
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    themeBtn.textContent = "☀ Light Mode";
+    localStorage.setItem("theme", "dark");
+  } else {
+    themeBtn.textContent = "🌙 Dark Mode";
+    localStorage.setItem("theme", "light");
+  }
 });
 
-// ========== QUIZ PILIHAN GANDA ==========
-const quizLevels = {
+
+// ========== SUBNETTING CALCULATOR ==========
+document.getElementById("calcBtn").addEventListener("click", () => {
+  const ip = document.getElementById("ipInput").value;
+  const mask = parseInt(document.getElementById("maskInput").value);
+  const resultBox = document.getElementById("result");
+  const stepsBox = document.getElementById("stepByStepContainer");
+  const stepsList = document.getElementById("stepsList");
+
+  if (!ip || isNaN(mask)) {
+    resultBox.innerHTML = "<p class='error'>Isi IP dan subnet mask dulu!</p>";
+    return;
+  }
+
+  try {
+    const ipParts = ip.split(".").map(Number);
+    if (ipParts.length !== 4) throw "IP salah";
+
+    const hostBits = 32 - mask;
+    const totalHosts = Math.pow(2, hostBits);
+    const usableHosts = totalHosts - 2;
+
+    const subnetMask = 0xffffffff << (32 - mask);
+    const ipToInt = (ipParts[0] << 24) | (ipParts[1] << 16) | (ipParts[2] << 8) | ipParts[3];
+
+    const network = ipToInt & subnetMask;
+    const broadcast = network | (~subnetMask >>> 0);
+
+    const intToIp = (int) => 
+      [(int >>> 24) & 255, (int >>> 16) & 255, (int >>> 8) & 255, int & 255].join(".");
+
+    const networkIP = intToIp(network);
+    const broadcastIP = intToIp(broadcast);
+
+    resultBox.innerHTML = `
+      <div class="result-box">
+        <p><b>Network ID:</b> ${networkIP}</p>
+        <p><b>Broadcast:</b> ${broadcastIP}</p>
+        <p><b>Total Hosts:</b> ${totalHosts}</p>
+        <p><b>Usable Hosts:</b> ${usableHosts}</p>
+      </div>
+    `;
+
+    stepsList.innerHTML = `
+      <li>Konversi IP ke biner dan terapkan mask.</li>
+      <li>Hitung Network ID dan Broadcast.</li>
+      <li>Tentukan jumlah host berdasarkan rumus 2^(32-mask).</li>
+    `;
+    stepsBox.style.display = "block";
+
+  } catch (err) {
+    resultBox.innerHTML = "<p class='error'>Format IP tidak valid!</p>";
+  }
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  document.getElementById("ipInput").value = "";
+  document.getElementById("maskInput").value = "";
+  document.getElementById("result").innerHTML = "";
+  document.getElementById("stepByStepContainer").style.display = "none";
+});
+
+
+// ========== QUIZ MCQ SYSTEM ==========
+
+// --- List pertanyaan ---
+const quizData = {
   easy: [
-    { q: "Apa kepanjangan IP?", a: "Internet Protocol", opts: ["Internal Port", "Integrated Protocol", "Internet Port"] },
-    { q: "Berapa bit IPv4?", a: "32 bit", opts: ["128 bit", "16 bit", "64 bit"] },
-    { q: "Berapa oktet IPv4?", a: "4 oktet", opts: ["6 oktet", "3 oktet", "10 oktet"] }
+    {
+      q: "Apa fungsi dari subnet mask?",
+      options: ["Menentukan kelas IP", "Memisahkan network dan host", "Menghitung kecepatan jaringan", "Mendeteksi gateway"],
+      answer: 1
+    },
+    {
+      q: "IP kelas C dimulai dari?",
+      options: ["1–126", "128–191", "192–223", "224–239"],
+      answer: 2
+    },
+    {
+      q: "Apa kepanjangan dari LAN?",
+      options: ["Local Area Network", "Wide Area Network", "Metropolitan Area Network"],
+      answer: 0
+    },
+    {
+      q: "Apa subnet default kelas A?",
+      options: ["192.1.1.0","224.9.1.1", "255.0.0.0"],
+      answer:2
+    },
   ],
   medium: [
-    { q: "Host /24?", a: "254 host", opts: ["126 host", "2 host", "1022 host"] },
-    { q: "Prefix dari 255.255.255.0?", a: "/24", opts: ["/16", "/20", "/25"] },
-    { q: "Network 192.168.10.1/24?", a: "192.168.10.0", opts: ["192.168.10.128", "192.168.10.10", "192.168.10.255"] }
+    {
+      q: "Berapa subnet mask untuk /26?",
+      options: ["255.255.255.0", "255.255.255.192", "255.255.255.224", "255.255.255.240"],
+      answer: 1
+    },
+    {
+      q: "Berapa host usable dari subnet /30?",
+      options: ["0", "2", "4", "6"],
+      answer: 1
+    }
   ],
   hard: [
-    { q: "Network 192.168.10.33/27?", a: "192.168.10.32", opts: ["192.168.10.0", "192.168.10.64", "192.168.10.16"] },
-    { q: "Broadcast 192.168.10.33/27?", a: "192.168.10.63", opts: ["192.168.10.32", "192.168.10.47", "192.168.10.127"] },
-    { q: "Host valid /27?", a: "30 host", opts: ["62 host", "14 host", "2 host"] }
+    {
+      q: "CIDR /27 memiliki total berapa host?",
+      options: ["16", "30", "32", "64"],
+      answer: 2
+    },
+    {
+      q: "Network ID dari 10.1.5.129/25 adalah?",
+      options: ["10.1.5.0", "10.1.5.128", "10.1.5.192", "10.1.5.64"],
+      answer: 1
+    }
   ]
 };
 
 let quizLevel = "easy";
-let quizIndex = 0;
+let currentQuestion = 0;
 let score = 0;
 
-const levelSelect = document.getElementById("quizLevelSelect");
-const startBtn = document.getElementById("startQuizBtn");
-const nextBtn = document.getElementById("nextQuizBtn");
 const quizContainer = document.getElementById("quizContainer");
-const quizStats = document.getElementById("quizStats");
+const nextBtn = document.getElementById("nextQuizBtn");
+const statsBox = document.getElementById("quizStats");
 
-startBtn.addEventListener("click", () => {
-  quizLevel = levelSelect.value;
-  quizIndex = 0;
-  score = 0;
-  nextBtn.style.display = "none";
-  quizStats.innerHTML = `Skor: 0/${quizLevels[quizLevel].length}`;
-  showQuiz();
+document.getElementById("quizLevelSelect").addEventListener("change", (e) => {
+  quizLevel = e.target.value;
 });
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
+// --- Start quiz ---
+document.getElementById("startQuizBtn").addEventListener("click", () => {
+  currentQuestion = 0;
+  score = 0;
+  statsBox.innerHTML = "";
+  showQuestion();
+});
 
-function showQuiz() {
-  const data = quizLevels[quizLevel][quizIndex];
-  const opts = shuffle([data.a, ...data.opts]);
+// --- Tampilkan pertanyaan ---
+function showQuestion() {
+  const data = quizData[quizLevel][currentQuestion];
 
   quizContainer.innerHTML = `
-    <h3>Pertanyaan ${quizIndex + 1}</h3>
-    <p>${data.q}</p>
-
-    <div class="options">
-      ${opts.map(o => `
-        <label class="option">
-          <input type="radio" name="quizOpt" value="${o}">
-          ${o}
-        </label>
-      `).join("")}
+    <div class="quiz-box">
+      <h2>${data.q}</h2>
+      <div class="mcq-list">
+        ${data.options
+          .map(
+            (opt, i) =>
+              <button class="mcq-btn" onclick="selectOption(${i})">${opt}</button>
+          )
+          .join("")}
+      </div>
     </div>
-
-    <button id="checkBtn">Periksa</button>
-    <div id="quizFeedback"></div>
   `;
 
-  document.getElementById("checkBtn").onclick = () => {
-    const selected = document.querySelector('input[name="quizOpt"]:checked');
-
-    if (!selected) return;
-
-    const feedback = document.getElementById("quizFeedback");
-
-    if (selected.value === data.a) {
-      feedback.innerHTML = "✅ Benar!";
-      score++;
-    } else {
-      feedback.innerHTML = `❌ Salah! Jawaban: <b>${data.a}</b>`;
-    }
-
-    quizStats.innerHTML = `Skor: ${score}/${quizLevels[quizLevel].length}`;
-    nextBtn.style.display = "block";
-  };
+  nextBtn.style.display = "none";
 }
 
+// --- Cek jawaban ---
+function selectOption(choice) {
+  const correct = quizData[quizLevel][currentQuestion].answer;
+  const all = document.querySelectorAll(".mcq-btn");
+
+  all.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correct) btn.classList.add("correct");
+    if (i === choice && choice !== correct) btn.classList.add("wrong");
+  });
+
+  if (choice === correct) score++;
+
+  nextBtn.style.display = "block";
+}
+
+// --- Next Question ---
 nextBtn.addEventListener("click", () => {
-  quizIndex++;
-  if (quizIndex >= quizLevels[quizLevel].length) {
-    quizContainer.innerHTML = `<h3>Quiz selesai!</h3><p>Skor akhir: ${score}/${quizLevels[quizLevel].length}</p>`;
-    nextBtn.style.display = "none";
+  currentQuestion++;
+
+  if (currentQuestion >= quizData[quizLevel].length) {
+    endQuiz();
   } else {
-    showQuiz();
+    showQuestion();
   }
 });
 
-// ===== AI Mentor =====
+// --- End Quiz ---
+function endQuiz() {
+  quizContainer.innerHTML = "";
+  nextBtn.style.display = "none";
+
+  statsBox.innerHTML = `
+    <div class="result-box">
+      <h3>Quiz Selesai!</h3>
+      <p>Score kamu: <b>${score}</b> dari <b>${quizData[quizLevel].length}</b></p>
+    </div>
+  `;
+}
+
+
+// ========== AI MENTOR ==========
 document.getElementById("mentorSendBtn").addEventListener("click", () => {
-  const input = document.getElementById("mentorInput").value.trim();
+  const input = document.getElementById("mentorInput").value;
   const bubble = document.getElementById("mentorResponse");
 
-  if (!input) return;
+  if (!input.trim()) return;
 
-  bubble.innerHTML = "<em>Mikir sebentar…</em>";
+  bubble.textContent = "Mentor sedang memikirkan jawaban...";
 
   setTimeout(() => {
-    bubble.innerHTML = "Pertanyaan bagus! Tapi fitur mentor tetap sama seperti sebelumnya 😊";
-  }, 800);
+    bubble.textContent =
+      "Maaf, AI Mentor ini belum sepenuhnya AI asli, tapi aku bisa bantu jawab materi dasar jaringan kok!";
+  }, 800);
 });
