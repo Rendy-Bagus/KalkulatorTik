@@ -1,5 +1,6 @@
 /* ============================================
-   THEME COLORS
+   THEME COLORS & GLOBAL VARIABLES
+   Digunakan untuk mempermudah penggantian tema
    ============================================ */
 :root {
   --bg-light: #ffffff;
@@ -12,7 +13,8 @@
 }
 
 /* ============================================
-   GLOBAL BODY
+   GLOBAL BODY STYLE
+   Mengatur font, warna, dan animasi transisi
    ============================================ */
 body {
   margin: 0;
@@ -22,10 +24,12 @@ body {
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* ============================================
    NAVBAR
+   Bagian navigasi utama di bagian atas halaman
    ============================================ */
 .navbar {
   position: fixed;
@@ -45,51 +49,33 @@ body {
   font-size: 1.3em;
   font-weight: 700;
   color: var(--primary);
-   letter-spacing: 1px;
+  letter-spacing: 1px;
 }
 
+/* Link navbar */
 .nav-links a {
   margin: 0 10px;
   text-decoration: none;
   color: var(--text-light);
   font-weight: 500;
-   position: relative;
-   transition: color var (--transition);
+  position: relative;
+  transition: color var(--transition);
 }
 
-/* ============================================
-   NAVBAR TEXT BATTERY CHARGING EFFECT
-   ============================================ */
-
+/* Efek garis bawah animasi */
 .nav-links a::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -4px;
-  height: 3px;
   width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
   background: var(--primary);
-  border-radius: 50px;
-  animation: chargeBar 2s infinite;
+  transition: width 0.4s ease;
 }
-.nav-links a: hover::after { width: 100%; }
+.nav-links a:hover::after { width: 100%; }
 
-/* Dark Mode */
-.dark-mode .nav-links a::after {
-  background: var(--secondary);
-}
-
-/* Efek */
-@keyframes chargeBar {
-  0% { width: 0%; opacity: 0.2; }
-  40% { width: 60%; opacity: 0.8; }
-  70% { width: 100%; opacity: 1; }
-  100% { width: 0%; opacity: 0.3; }
-}
-
-/* ============================================
-   THEME BUTTON
-   ============================================ */
+/* Tombol theme (light/dark mode) */
 .theme-btn {
   background: var(--primary);
   border: none;
@@ -97,7 +83,7 @@ body {
   color: white;
   border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background var(--transition), transform 0.4s ease;
 }
 .theme-btn:hover {
   transform: scale(1.1);
@@ -105,11 +91,15 @@ body {
 }
 
 /* ============================================
-   SECTION
+   SECTION (Halaman per-bagian)
    ============================================ */
 .section {
   min-height: 100vh;
-  padding: 120px 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 50px;
   text-align: center;
 }
 
@@ -117,7 +107,7 @@ body {
   color: var(--primary);
 }
 
-/* CTA BUTTON */
+/* Tombol ajakan (CTA) */
 .cta-btn {
   margin-top: 20px;
   padding: 12px 25px;
@@ -127,77 +117,149 @@ body {
   color: white;
   cursor: pointer;
   font-weight: 600;
+  transition: transform 0.4s ease, background 0.4s ease;
 }
 .cta-btn:hover {
-  background: var(--secondary);
   transform: scale(1.05);
+  background: var(--secondary);
 }
 
 /* ============================================
-   CALCULATOR
+   SUBNETTING CALCULATOR INPUT & BUTTON
    ============================================ */
 .calc-container {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
 }
 
+/* Input IP & subnet mask */
 .calc-container input {
   padding: 10px 15px;
   border: 2px solid var(--primary);
-  border-radius: 12px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1em;
   width: 200px;
 }
 
-/* ============================================
-   QUIZ BUTTONS (BARU)
-   ============================================ */
-.quiz-btn {
-  padding: 12px 25px;
+/* Tombol kalkulasi */
+.calc-container button {
+  padding: 10px 20px;
   background: var(--primary);
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 1.05em;
-  font-weight: 600;
-  transition: 0.3s ease;
-  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
-
-.quiz-btn:hover {
+.calc-container button:hover {
   transform: scale(1.05);
   background: var(--secondary);
 }
 
 /* ============================================
-   QUIZ OPTIONS
+   QUIZ LEVEL SELECTOR (Easy/Medium/Hard)
    ============================================ */
+.level-selector {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* MCQ Style */
+.mcq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
 .mcq-btn {
   width: 100%;
-  padding: 12px;
-  margin: 6px 0;
-  border-radius: 10px;
+  padding: 12px 20px;
   background: rgba(0,123,255,0.08);
   border: 2px solid var(--primary);
+  border-radius: 12px;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 1em;
+  transition: 0.3s ease;
 }
 
-.mcq-btn:hover { background: var(--primary); color: white; }
-.mcq-btn.correct { background: #28c76f !important; }
-.mcq-btn.wrong { background: #ff4d4d !important; }
+.mcq-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.mcq-btn.correct {
+  background: #28c76f;
+  color: white;
+  border-color: #28c76f;
+}
+
+.mcq-btn.wrong {
+  background: #ff4d4d;
+  color: white;
+  border-color: #ff4d4d;
+}
+
+.quiz-box h2 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+/* Dropdown + tombol mulai kuis */
+.level-selector select,
+.level-selector button {
+  padding: 8px 15px;
+  font-size: 1em;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.level-selector button {
+  background: var(--primary);
+  color: white;
+}
+.level-selector button:hover {
+  background: var(--secondary);
+  transform: scale(1.02);
+}
+
+
 
 /* ============================================
-   RESULT BOX
+   RESULT BOX (Hasil hitungan + statistik kuis)
    ============================================ */
 .result-box {
-  padding: 15px;
-  background: rgba(0, 123, 255, 0.05);
-  border-radius: 12px;
   margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(0, 123, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  width: 80%;
+  max-width: 500px;
+  text-align: left;
 }
+
+/* Statistik skor */
+#quizStats {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Daftar langkah subnetting */
+#stepsList {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 500px;
+}
+#stepsList li { margin-bottom: 8px; }
 
 /* ============================================
    AI MENTOR (ChatBot kecil)
@@ -218,65 +280,126 @@ body {
   margin-top: 10px;
   gap: 10px;
 }
-
 .mentor-input input {
   flex: 1;
-  padding: 12px 16px;
-  border-radius: 25px;
-  border: 2px solid var(--primary);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(6px);
-  color: var(--text-light);
-  font-size: 1em;
-  transition: 0.3s ease;
-  outline: none;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
 }
-
-.mentor-input input::placeholder {
-  color: #cccccc;
-  opacity: 0.8;
+.mentor-input button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
-
-.mentor-input input:focus {
-  border-color: var(--secondary);
-  box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
-  background: rgba(255, 255, 255, 0.28);
-}
-
-.dark-mode .mentor-input input {
-  background: rgba(30, 30, 40, 0.6);
-  border: 2px solid var(--secondary);
-  color: var(--text-dark);
-  box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
-}
-
-.dark-mode .mentor-input input:focus {
-  background: rgba(40, 40, 55, 0.6);
-  box-shadow: 0 0 18px rgba(0, 170, 255, 0.6);
-}
-
-.dark-mode .mentor-input input::placeholder {
-  color: #dddddd;
-}
+.mentor-input button:hover { transform: scale(1.1); }
 
 /* ============================================
-   DARK MODE
+   DARK MODE (Ketika class "dark-mode" aktif)
    ============================================ */
 .dark-mode {
   background: var(--bg-dark);
   color: var(--text-dark);
 }
 
-.dark-mode .quiz-btn {
-  background: var(--secondary);
-}
-.dark-mode .quiz-btn:hover {
-  background: var(--primary);
-}
-
 .dark-mode .mcq-btn {
   background: #11131d;
   border-color: var(--secondary);
   color: var(--text-dark);
+}
+
+.dark-mode .mcq-btn:hover {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.dark-mode .mcq-btn.correct {
+  background: #28c76f;
+  border-color: #28c76f;
+}
+
+.dark-mode .mcq-btn.wrong {
+  background: #ff4d4d;
+  border-color: #ff4d4d;
+}
+
+.dark-mode .navbar {
+  background: rgba(10,10,18,0.7);
+}
+
+.dark-mode .calc-container input {
+  background: #11131d;
+  color: #eee;
+  border-color: var(--secondary);
+}
+
+/* ============================================
+   MCQ BUTTONS (Pilihan Ganda)
+   ============================================ */
+.mcq-option {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 15px;
+  background: rgba(0, 123, 255, 0.07);
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  margin: 8px auto;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
+.mcq-option:hover {
+  background: rgba(0, 170, 255, 0.15);
+  transform: scale(1.02);
+}
+
+/* Saat jawaban dipilih */
+.mcq-selected {
+  background: var(--primary) !important;
+  color: white !important;
+  border-color: var(--secondary) !important;
+}
+
+/* Jawaban benar */
+.mcq-correct {
+  background: #28a745 !important;
+  color: #fff !important;
+}
+
+/* Jawaban salah */
+.mcq-wrong {
+  background: #dc3545 !important;
+  color: #fff !important;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* ============================================
+   RESPONSIVE UNTUK HP/LAYAR KECIL
+   ============================================ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+
+  .calc-container input,
+  .calc-container button,
+  .level-selector select,
+  .level-selector button {
+    width: 90%;
+  }
+
+  .mentor-input { flex-direction: column; }
+
+  .mcq-option { width: 90%; }
 }
