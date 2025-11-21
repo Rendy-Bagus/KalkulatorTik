@@ -329,6 +329,7 @@ body {
 
 .dark-mode .navbar {
   background: rgba(10,10,18,0.7);
+   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .dark-mode .calc-container input {
