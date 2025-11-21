@@ -388,6 +388,100 @@ footer {
   opacity: 0.8;
 }
 
+/* ===============================
+   QUIZ OPTION (PILIHAN GANDA)
+=================================*/
+
+.choice-container {
+    display: flex;
+    align-items: center;
+    background: #eef4ff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 60%;
+    border: 1px solid #c7d7ff;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.choice-container:hover {
+    background: #dce9ff;
+    transform: scale(1.02);
+}
+
+.choice-container input {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+
+
+/* ===============================
+   QUIZ BUTTONS 
+=================================*/
+
+#checkBtn,
+#nextQuizBtn {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+#checkBtn:hover,
+#nextQuizBtn:hover {
+    background: #005fcc;
+    transform: scale(1.05);
+}
+
+#nextQuizBtn {
+    display: none; /* default disembunyikan */
+}
+
+
+
+/* ===============================
+   QUIZ FEEDBACK
+=================================*/
+#quizFeedback {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+/* ===============================
+   DARK MODE SUPPORT
+=================================*/
+
+body.dark-mode .choice-container {
+    background: #1f2633;
+    border-color: #2e3a4c;
+}
+
+body.dark-mode .choice-container:hover {
+    background: #2a3243;
+}
+
+body.dark-mode #checkBtn,
+body.dark-mode #nextQuizBtn {
+    background: #2386ff;
+}
+
+body.dark-mode #checkBtn:hover,
+body.dark-mode #nextQuizBtn:hover {
+    background: #1b6bd3;
+}
+
+
 /* ============================================
    RESPONSIVE UNTUK HP/LAYAR KECIL
    ============================================ */
