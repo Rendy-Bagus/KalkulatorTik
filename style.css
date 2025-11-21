@@ -335,6 +335,17 @@ body {
    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
+/* NAV LINKS WARNA DARK MODE */
+.dark-mode .nav-links a {
+  color: var(--text-dark) !important;
+  transition: color var(--transition);
+}
+
+.dark-mode .nav-links a:hover {
+  color: var(--secondary) !important;
+}
+
+
 .dark-mode .calc-container input {
   background: #11131d;
   color: #eee;
